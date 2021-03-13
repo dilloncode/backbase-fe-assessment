@@ -1,0 +1,33 @@
+@import '../global';
+
+.toolbar {
+  background-color: #fff;
+  border-top: 1px solid $peachtreeOrange;
+  border-bottom: 2px solid $peachtreeOrange;
+  box-sizing: border-box;
+  max-height: 64px;
+
+  & > div.logo {
+    @include contentLayout;
+    padding: $mediumPadding 0;
+
+    & > img {
+      max-height: 40px;
+    }
+  }
+}
+
+.content {
+  @include contentLayout;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 75px;
+
+  app-transfer {
+    flex: .3;
+  }
+
+  app-transactions {
+    flex: .675;
+  }
+}
