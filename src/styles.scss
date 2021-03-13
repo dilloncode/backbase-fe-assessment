@@ -1,1 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import './reset';
+@import './global';
+
+body {
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+  font-family: Kanit, sans-serif;
+  font-weight: 200;
+  margin: 0;
+}
+
+input:not([type='submit']), select {
+  border: none;
+  border-bottom: 1px solid $mediumGray;
+  background: transparent;
+  color: $mediumGray;
+  font-family: inherit;
+  width: 100%;
+  margin: 10px 0;
+  padding-bottom: 4px;
+}
+
+div.add-on-currency {
+  position: relative;
+
+  &::after {
+    content: attr(data-currency-symbol);
+    color: $mediumGray;
+    position: absolute;
+    left: 0;
+    top: 27px;
+  }
+
+  & > input {
+    text-indent: 14px;
+  }
+}
+
+label {
+  display: block;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: $mediumFont;
+  margin-top: $mediumMargin;
+}
+
+button, input[type='submit'] {
+  background-color: $peachtreeOrange;
+  border: none;
+  border-radius: 4px;
+  color: $softWhite;
+  cursor: pointer;
+  margin-top: $largeMargin;
+  min-width: 150px;
+  padding: $mediumPadding 0;
+  text-transform: uppercase;
+}

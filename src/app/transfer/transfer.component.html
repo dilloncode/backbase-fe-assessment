@@ -1,0 +1,28 @@
+<app-card title="Transfer"
+          icon="arrows">
+
+  <label for="fromAccount">FROM ACCOUNT</label>
+  <select name="fromAccount"
+          id="fromAccount">
+    <option value="4652">Free Checking(4652) - $5000</option>
+  </select>
+
+  <label for="toAccount">TO ACCOUNT</label>
+  <select name="toAccount"
+          id="toAccount">
+    <option value="test">Georgia Electric Power Company</option>
+  </select>
+
+  <div class="add-on-currency" [attr.data-currency-symbol]="currencySymbol">
+    <label for="amount">AMOUNT</label>
+    <input type="text"
+           id="amount"
+           name="amount"
+           [placeholder]="placeholder" />
+  </div>
+
+  <div class="submit-container">
+    <input type="submit"
+           value="Submit">
+  </div>
+</app-card>

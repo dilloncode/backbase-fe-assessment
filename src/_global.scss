@@ -1,0 +1,18 @@
+/* variables */
+$peachtreeOrange: #e87325;
+$softWhite: #eee;
+$mediumGray: #a2a09c;
+
+$smallFont: 10px;
+$mediumFont: 14px;
+
+$mediumMargin: 10px;
+$largeMargin: 20px;
+$mediumPadding: 10px;
+$largePadding: 20px;
+
+/* mixins */
+@mixin contentLayout {
+  margin: 0 auto;
+  max-width: 1024px;
+}
