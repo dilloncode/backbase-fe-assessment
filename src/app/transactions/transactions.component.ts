@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Sort } from '../models';
 import { AccountTransaction } from '../models';
+import { Account } from '../models/Account';
 import { AccountTransactionService } from '../shared/services/account-transaction.service';
 
 @Component({
@@ -9,8 +10,8 @@ import { AccountTransactionService } from '../shared/services/account-transactio
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
-  data: AccountTransaction[] = [];
-  transactions: AccountTransaction[] = [];
+  @Input() transactions: AccountTransaction[] = [];
+  @Output() transactionChange: EventEmitter<AccountTransaction[]> = new EventEmitter<AccountTransaction[]>()
   searchText: string = '';
   sortProperty: string = 'date';
   sortOrder: boolean = false;
@@ -20,8 +21,7 @@ export class TransactionsComponent implements OnInit {
     this.accountTransactionsService
       .getAccountTransactions()
       .subscribe((data: any) => {
-        this.data = data;
-        this.transactions = data;
+        this.transactionChange.emit(data);
       });
   }
 

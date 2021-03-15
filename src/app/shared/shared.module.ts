@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -24,10 +24,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     FilterPipe,
   ],
   providers: [
-    {
-      provide: LOCALE_ID,
-      useValue: navigator.language,
-    },
+    { provide: LOCALE_ID, useValue: navigator.language },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'USD' },
     CurrencySymbolPipe,
     AccountTransactionService,
     TypeMapperService,

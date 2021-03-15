@@ -1,14 +1,16 @@
 <div class="toolbar"
      role="banner">
   <div class="logo">
-    <img alt="Angular Logo"
+    <img alt="client logo"
          src="../assets/logo.jpg" />
   </div>
 </div>
 
 <div class="content"
      role="main">
-  <app-transfer>
-  </app-transfer>
-  <app-transactions></app-transactions>
+  <app-transfer [accountCurrency]="account.accountCurrency"
+                [accountBalance]="account.accountBalance"
+                [recentMerchants]="account.recentMerchants"></app-transfer>
+  <app-transactions [transactions]="account.accountTransactions"
+                    (transactionChange)="handleTransactionsChange($event)"></app-transactions>
 </div>
