@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -24,6 +24,10 @@ import { FilterPipe } from './pipes/filter.pipe';
     FilterPipe,
   ],
   providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: navigator.language,
+    },
     CurrencySymbolPipe,
     AccountTransactionService,
     TypeMapperService,
