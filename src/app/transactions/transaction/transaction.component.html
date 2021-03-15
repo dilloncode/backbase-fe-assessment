@@ -1,7 +1,7 @@
 <div class="transaction"
      [style.border-left-color]="transaction?.categoryCode">
   <div class="transaction-date">
-    {{transaction?.dates?.valueDate | date: 'MMM dd'}}
+    {{transaction?.date | date: 'MMM dd'}}
   </div>
   <div>
     <img class="merchant-image"
@@ -13,6 +13,6 @@
     <span>{{transaction?.transaction?.type}}</span>
   </div>
   <div class="transaction-amount">
-    {{transaction?.transaction?.amountCurrency?.amount | currency: transaction?.transaction?.amountCurrency?.currencyCode}}
+    {{transaction?.amount | currency: transaction?.transaction?.amountCurrency?.currencyCode}}
   </div>
 </div>

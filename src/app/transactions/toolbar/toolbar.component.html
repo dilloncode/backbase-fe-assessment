@@ -1,11 +1,14 @@
 <div class="search">
   <input type="text"
          name="search"
-         placeholder="Search By Typing..." />
+         [value]="searchText"
+         (input)="onSearch(search.value)"
+         placeholder="Search By Typing..."
+         #search />
 </div>
 <div class="filters">
   Sort by
-  <button>Date▼▲</button>
-  <button>Beneficiary</button>
-  <button>Amount</button>
+  <button (click)="onSortChange('date')">Date <span *ngIf="sortProperty === 'date'" [innerHTML]="icon"></span></button>
+  <button (click)="onSortChange('beneficiary')">Beneficiary <span *ngIf="sortProperty === 'beneficiary'" [innerHTML]="icon"></span></button>
+  <button (click)="onSortChange('amount')">Amount <span *ngIf="sortProperty === 'amount'" [innerHTML]="icon"></span></button>
 </div>

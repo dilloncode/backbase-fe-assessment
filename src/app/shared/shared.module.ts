@@ -8,6 +8,8 @@ import { CurrencySymbolPipe } from './pipes/currency-symbol.pipe';
 
 import { TypeMapperService } from './services/type-mapper.service';
 import { AccountTransactionService } from './services/account-transaction.service';
+import { SortByPipe } from './pipes/sort-by.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { AccountTransactionService } from './services/account-transaction.servic
   declarations: [
     CardComponent,
     CurrencySymbolPipe,
+    SortByPipe,
+    FilterPipe,
   ],
   providers: [
     CurrencySymbolPipe,
@@ -31,6 +35,8 @@ import { AccountTransactionService } from './services/account-transaction.servic
     CardComponent,
     // pipes
     CurrencySymbolPipe,
+    SortByPipe,
+    FilterPipe,
   ]
 })
 export class SharedModule { }

@@ -1,7 +1,11 @@
 <app-card title="Recent Transactions"
           icon="briefcase">
-  <app-toolbar></app-toolbar>
-  <app-transaction *ngFor="let transaction of transactions"
+  <app-toolbar [searchText]="searchText"
+               [sortProperty]="sortProperty"
+               [sortOrder]="sortOrder"
+               (search)="handleSearchChange($event)"
+               (sort)="handleSortChange($event)"></app-toolbar>
+  <app-transaction *ngFor="let transaction of transactions | filter:searchText | sortBy:sortProperty:sortOrder"
                    [transaction]="transaction">
   </app-transaction>
 </app-card>
