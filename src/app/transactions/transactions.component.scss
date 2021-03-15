@@ -1,0 +1,12 @@
+app-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  @media screen and (max-width: 600px) {
+    & {
+      flex-direction: column;
+    }
+  }
+}

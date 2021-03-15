@@ -1,3 +1,3 @@
-interface IDatesDto {
+export interface DatesDto {
   valueDate: string | number;
 }

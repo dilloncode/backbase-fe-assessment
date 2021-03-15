@@ -1,3 +1,7 @@
-<app-card title="Recent Transactions" icon="briefcase">
-  It works
+<app-card title="Recent Transactions"
+          icon="briefcase">
+  <app-toolbar></app-toolbar>
+  <app-transaction *ngFor="let transaction of transactions"
+                   [transaction]="transaction">
+  </app-transaction>
 </app-card>

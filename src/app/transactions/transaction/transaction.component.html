@@ -1,0 +1,18 @@
+<div class="transaction"
+     [style.border-left-color]="transaction?.categoryCode">
+  <div class="transaction-date">
+    {{transaction?.dates?.valueDate | date: 'MMM dd'}}
+  </div>
+  <div>
+    <img class="merchant-image"
+         src="../../../assets/icons/{{transaction?.merchant?.image}}"
+         [alt]="transaction?.merchant?.name" />
+  </div>
+  <div class="merchant-info">
+    <span class="merchant-name">{{transaction?.merchant?.name}}</span>
+    <span>{{transaction?.transaction?.type}}</span>
+  </div>
+  <div class="transaction-amount">
+    {{transaction?.transaction?.amountCurrency?.amount | currency: transaction?.transaction?.amountCurrency?.currencyCode}}
+  </div>
+</div>

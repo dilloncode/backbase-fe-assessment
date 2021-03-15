@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { CardComponent } from './components/card.component';
 
 import { CurrencySymbolPipe } from './pipes/currency-symbol.pipe';
 
+import { TypeMapperService } from './services/type-mapper.service';
+import { AccountTransactionService } from './services/account-transaction.service';
+
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule,
   ],
   declarations: [
     CardComponent,
@@ -15,6 +21,8 @@ import { CurrencySymbolPipe } from './pipes/currency-symbol.pipe';
   ],
   providers: [
     CurrencySymbolPipe,
+    AccountTransactionService,
+    TypeMapperService,
   ],
   exports: [
     // modules
@@ -22,7 +30,7 @@ import { CurrencySymbolPipe } from './pipes/currency-symbol.pipe';
     // components
     CardComponent,
     // pipes
-    CurrencySymbolPipe
+    CurrencySymbolPipe,
   ]
 })
 export class SharedModule { }

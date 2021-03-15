@@ -1,11 +1,15 @@
-class Transaction {
+import { TransactionType } from "../enums";
+import { TransactionDto } from "../interfaces";
+import { AmountCurrency } from "./AmountCurrency";
+
+export class Transaction {
   amountCurrency: AmountCurrency;
   type: string;
-  creditDebitIndicator: string;
+  creditDebitIndicator: TransactionType;
 
-  constructor(dto: ITransactionDto) {
+  constructor(dto: TransactionDto) {
     this.amountCurrency = new AmountCurrency(dto.amountCurrency);
     this.type = dto.type;
-    this.creditDebitIndicator = dto.creditDebitIndicator;
+    this.creditDebitIndicator = <TransactionType>dto.creditDebitIndicator;
   }
 }

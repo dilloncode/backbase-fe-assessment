@@ -1,4 +1,6 @@
-class AmountCurrency {
+import { AmountCurrencyDto } from "../interfaces";
+
+export class AmountCurrency {
   private _amount!: number;
   public currencyCode: string;
 
@@ -10,7 +12,7 @@ class AmountCurrency {
     return this._amount;
   }
 
-  constructor(dto: IAmountCurrencyDto) {
+  constructor(dto: AmountCurrencyDto) {
     this.amount = Number(dto?.amount);
     this.currencyCode = dto?.currencyCode ?? 'USD';
   }

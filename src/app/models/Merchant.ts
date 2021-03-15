@@ -1,8 +1,13 @@
-class Merchant {
-  name: string;
-  accountNumber: string;
+import { MerchantDto } from "../interfaces";
 
-  constructor(dto: IMerchantDto) {
+export class Merchant {
+  public name: string;
+  public accountNumber: string;
+  public get image() {
+    return `${this.name?.toLowerCase().split(' ').join('-')}.png`;
+  }
+
+  constructor(dto: MerchantDto) {
     this.name = dto.name;
     this.accountNumber = dto.accountNumber;
   }

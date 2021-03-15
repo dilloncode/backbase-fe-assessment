@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&display=swap');
 @import './reset';
 @import './global';
 
@@ -45,7 +45,7 @@ label {
   margin-top: $mediumMargin;
 }
 
-button, input[type='submit'] {
+input[type='submit'] {
   background-color: $peachtreeOrange;
   border: none;
   border-radius: 4px;
