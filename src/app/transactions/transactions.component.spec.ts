@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FilterPipe } from '../shared/pipes/filter.pipe';
+import { SortByPipe } from '../shared/pipes/sort-by.pipe';
 
 import { TransactionsComponent } from './transactions.component';
 
@@ -8,9 +11,16 @@ describe('TransactionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TransactionsComponent ]
+      declarations: [
+        TransactionsComponent,
+        SortByPipe,
+        FilterPipe,
+      ],
+      imports:[
+        HttpClientTestingModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

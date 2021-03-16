@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Sort } from '../models';
 import { AccountTransaction } from '../models';
-import { Account } from '../models/Account';
 import { AccountTransactionService } from '../shared/services/account-transaction.service';
 
 @Component({

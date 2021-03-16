@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { CurrencySymbolPipe } from '../shared/pipes/currency-symbol.pipe';
 
 import { TransferComponent } from './transfer.component';
 
@@ -8,9 +10,10 @@ describe('TransferComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TransferComponent ]
+      declarations: [TransferComponent, CurrencySymbolPipe],
+      imports: [FormsModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
