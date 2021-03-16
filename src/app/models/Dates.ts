@@ -11,7 +11,7 @@ export class Dates {
     return this._valueDate;
   }
 
-  constructor(dto: DatesDto) {
+  constructor(dto?: DatesDto) {
     this.valueDate = dto?.valueDate
       ? new Date(dto.valueDate)
       : new Date();

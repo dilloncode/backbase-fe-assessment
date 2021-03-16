@@ -2,11 +2,11 @@
           icon="briefcase">
   <app-toolbar [searchText]="searchText"
                [sortProperty]="sortProperty"
-               [sortOrder]="sortOrder"
+               [sortDesc]="sortDesc"
                (search)="handleSearchChange($event)"
                (sort)="handleSortChange($event)"></app-toolbar>
 
-  <ng-container *ngIf="transactions | filter:searchText | sortBy:sortProperty:sortOrder as result">
+  <ng-container *ngIf="transactions | filter:searchText | sortBy:sortProperty:sortDesc as result">
     <app-transaction *ngFor="let transaction of result" [transaction]="transaction"></app-transaction>
     <div class="empty-state" *ngIf="!result?.length">No Transactions</div>    
   </ng-container>

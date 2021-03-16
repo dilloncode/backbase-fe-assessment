@@ -1,4 +1,5 @@
 import { TransactionType } from "../enums";
+import { AccountTransactionDto, AddTransactionForm } from "../interfaces";
 import { AccountTransaction } from "./AccountTransaction";
 
 export class Account {
@@ -6,7 +7,8 @@ export class Account {
   private _accountNumber: string = '';
   private _accountCurrency: string = 'USD';
   private _accountBalance: number = 0;
-  private _recentMerchants: string[] = []
+  private _recentMerchants: string[] = [];
+  newTransaction!: AccountTransaction;
 
   public set accountTransactions(value: AccountTransaction[]) {
     if (value?.length) {
@@ -38,9 +40,31 @@ export class Account {
   public get recentMerchants() {
     return this._recentMerchants;
   }
-  
+
   constructor(accountTransactions: AccountTransaction[] = []) {
     this.accountTransactions = accountTransactions;
   }
-  
+
+  createNewTransaction(values: AddTransactionForm): AccountTransaction {
+    const newValues: AccountTransactionDto = {
+      categoryCode: '#ccc;',
+      merchant: {
+        name: values.toAccount ?? '',
+        accountNumber: this.accountNumber,
+      },
+      dates: {
+        valueDate: new Date().getTime(),
+      },
+      transaction: {
+        amountCurrency: {
+          amount: values.amount,
+          currencyCode: this.accountCurrency,
+        },
+        type: 'Online Transfer',
+        creditDebitIndicator: TransactionType.Debit,
+      },
+    };
+
+    return new AccountTransaction(newValues);
+  }
 }

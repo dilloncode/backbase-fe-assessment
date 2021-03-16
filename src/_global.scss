@@ -1,5 +1,6 @@
 /* variables */
 $peachtreeOrange: #e87325;
+$headerBlue:  #0c8397;
 $softWhite: #eee;
 $mediumGray: #a2a09c;
 
@@ -15,4 +16,15 @@ $largePadding: 20px;
 @mixin contentLayout {
   margin: 0 auto;
   max-width: 1024px;
+}
+
+@mixin buttonStyle {
+  border: none;
+  border-radius: 4px;
+  color: $softWhite;
+  cursor: pointer;
+  margin: $largeMargin $mediumMargin;
+  min-width: 150px;
+  padding: $mediumPadding $largePadding;
+  text-transform: uppercase;
 }

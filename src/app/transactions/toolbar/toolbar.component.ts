@@ -10,7 +10,7 @@ import { Sort } from '../../models';
 export class ToolbarComponent implements OnChanges {
   icon: SafeHtml;
   @Input() searchText!: string;
-  @Input() sortOrder!: boolean;
+  @Input() sortDesc!: boolean;
   @Input() sortProperty!: string;
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
   @Output() sort: EventEmitter<Sort> = new EventEmitter<Sort>();
@@ -20,8 +20,8 @@ export class ToolbarComponent implements OnChanges {
   }
 
   ngOnChanges(changes: any) {
-    if ('sortOrder' in changes) {
-      this.icon = this.sanitizer.bypassSecurityTrustHtml(changes.sortOrder.currentValue ? '&#9660;' : '&#9650;');
+    if ('sortDesc' in changes) {
+      this.icon = this.sanitizer.bypassSecurityTrustHtml(changes.sortDesc.currentValue ? '&#9660;' : '&#9650;');
     }
   }
 
@@ -30,7 +30,7 @@ export class ToolbarComponent implements OnChanges {
   }
 
   onSortChange(property: string) {
-    const order = this.sortProperty === property ? !this.sortOrder : this.sortOrder;
+    const order = this.sortProperty === property ? !this.sortDesc : this.sortDesc;
     const sortEvent = new Sort(property, order);
     this.sort.emit(sortEvent)
   }

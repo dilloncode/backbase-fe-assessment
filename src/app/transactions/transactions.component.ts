@@ -14,7 +14,7 @@ export class TransactionsComponent implements OnInit {
   @Output() transactionChange: EventEmitter<AccountTransaction[]> = new EventEmitter<AccountTransaction[]>()
   searchText: string = '';
   sortProperty: string = 'date';
-  sortOrder: boolean = false;
+  sortDesc: boolean = true;
   constructor(private accountTransactionsService: AccountTransactionService) { }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class TransactionsComponent implements OnInit {
 
   handleSortChange(value: Sort) {
     this.sortProperty = value.property;
-    this.sortOrder = value.order;
+    this.sortDesc = value.order;
   }
 
   handleSearchChange(searchText: string) {

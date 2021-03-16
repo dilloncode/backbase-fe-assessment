@@ -45,14 +45,70 @@ label {
   margin-top: $mediumMargin;
 }
 
-input[type='submit'] {
-  background-color: $peachtreeOrange;
-  border: none;
-  border-radius: 4px;
-  color: $softWhite;
-  cursor: pointer;
-  margin-top: $largeMargin;
-  min-width: 150px;
-  padding: $mediumPadding 0;
-  text-transform: uppercase;
+input[type='submit'], button {
+  @include buttonStyle;
+  
+  &.primary {
+    background-color: $peachtreeOrange;
+    border: 2px solid $peachtreeOrange;
+  }
+
+  &.secondary {
+    background-color: $softWhite;
+    color: #444;
+    border: 2px solid $mediumGray;
+  }
+}
+
+app-confirm-modal {
+  display: none;
+
+  .confirm-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      /* z-index must be higher than .jw-modal-background */
+      z-index: 1000;
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 350px;
+        min-width: 500px;
+
+        .strong {
+          font-weight: 400;
+          margin: 20px 0;
+        }
+
+        .money {
+          color:#3cd371;
+        }
+
+        .actions {
+          margin-top: 60px;
+        }
+      }
+  }
+
+  .confirm-modal-background {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      background-color: #ccc;
+      opacity: 0.75;
+      
+      z-index: 900;
+  }
+}
+
+body.modal-open {
+  overflow: hidden;
 }

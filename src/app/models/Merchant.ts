@@ -7,8 +7,8 @@ export class Merchant {
     return `${this.name?.toLowerCase().split(' ').join('-')}.png`;
   }
 
-  constructor(dto: MerchantDto) {
-    this.name = dto.name;
-    this.accountNumber = dto.accountNumber;
+  constructor(dto?: MerchantDto) {
+    this.name = dto?.name ?? '';
+    this.accountNumber = dto?.accountNumber ?? '';
   }
 }

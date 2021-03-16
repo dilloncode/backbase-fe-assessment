@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   template: `
     <div class="card">
       <div class="card-title">
-        <img src="../../../../assets/icons/{{icon}}.png" [alt]="icon" />
+        <img *ngIf="icon" src="../../../../assets/icons/{{icon}}.png" [alt]="icon" />
         <span class="title-text">{{title}}</span>
       </div>
       <div class="card-content">
@@ -16,10 +16,6 @@ import { Component, Input } from '@angular/core';
   `
 })
 export class CardComponent {
-  @Input() title: string;
-  @Input() icon: string;
-  constructor() {
-    this.title = '';
-    this.icon = '';
-  }
+  @Input() title?: string;
+  @Input() icon?: string;
 }

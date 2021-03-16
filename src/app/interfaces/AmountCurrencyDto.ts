@@ -1,4 +1,4 @@
 export interface AmountCurrencyDto {
-  amount: number | string;
+  amount: number | string | null;
   currencyCode: string;
 }

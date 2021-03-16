@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AddTransactionForm } from './interfaces';
 import { AccountTransaction } from './models';
 import { Account } from './models/Account';
 
@@ -13,5 +14,12 @@ export class AppComponent {
 
   handleTransactionsChange(value: AccountTransaction[]) {
     this.account = new Account(value);
+  }
+
+  handleAddTransaction(values: AddTransactionForm) {
+    this.account.accountTransactions = [
+      ...this.account.accountTransactions,
+      this.account.createNewTransaction(values),
+    ];
   }
 }

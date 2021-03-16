@@ -7,9 +7,9 @@ export class Transaction {
   type: string;
   creditDebitIndicator: TransactionType;
 
-  constructor(dto: TransactionDto) {
-    this.amountCurrency = new AmountCurrency(dto.amountCurrency);
-    this.type = dto.type;
-    this.creditDebitIndicator = <TransactionType>dto.creditDebitIndicator;
+  constructor(dto?: TransactionDto) {
+    this.amountCurrency = new AmountCurrency(dto?.amountCurrency);
+    this.type = dto?.type ?? 'Online Transfer';
+    this.creditDebitIndicator = <TransactionType>dto?.creditDebitIndicator ?? TransactionType.Debit;
   }
 }

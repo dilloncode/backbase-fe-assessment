@@ -6,7 +6,7 @@ import {
 
 export interface AccountTransactionDto {
   categoryCode: string,
-  dates: DatesDto,
+  dates?: DatesDto,
   transaction: TransactionDto,
   merchant: MerchantDto,
 }

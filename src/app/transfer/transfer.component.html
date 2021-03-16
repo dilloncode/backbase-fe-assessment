@@ -1,30 +1,74 @@
 <app-card title="Transfer"
           icon="arrows">
+  <form (ngSubmit)="handleSubmit(form.value, form.valid)"
+        #form="ngForm"
+        novalidate>
 
-  <label for="fromAccount">FROM ACCOUNT</label>
-  <select name="fromAccount"
-          id="fromAccount"
-          disabled>
-    <option value="4652">Free Checking(4652) - {{accountBalance | currency:accountCurrency}}</option>
-  </select>
+    <label for="fromAccount">FROM ACCOUNT</label>
+    <select name="fromAccount"
+            id="fromAccount"
+            [ngModel]="newTransaction?.fromAccount"
+            required
+            disabled>
+      <option [ngValue]="accountNumber">{{accountName}} - {{accountBalance | currency:accountCurrency}}</option>
+    </select>
 
-  <label for="toAccount">TO ACCOUNT</label>
-  <select name="toAccount"
-          id="toAccount">
-    <option *ngFor="let merchant of recentMerchants" [value]="merchant">{{merchant}}</option>
-  </select>
+    <label for="toAccount">TO ACCOUNT</label>
+    <select name="toAccount"
+            id="toAccount"
+            [ngModel]="newTransaction?.toAccount"
+            #toAccount="ngModel"
+            required>
+      <option *ngFor="let merchant of recentMerchants"
+              [ngValue]="merchant">{{merchant}}</option>
+    </select>
+    <div *ngIf="toAccount.errors?.required && (toAccount.touched || form.submitted)"
+         class="error">Required</div>
 
-  <div class="add-on-currency"
-       [attr.data-currency-symbol]="accountCurrency | currencySymbol">
-    <label for="amount">AMOUNT</label>
-    <input type="number"
-           id="amount"
-           name="amount"
-           [placeholder]="0 | currency:accountCurrency:noCurrencySymbol" />
-  </div>
+    <div class="add-on-currency"
+         [attr.data-currency-symbol]="accountCurrency | currencySymbol">
+      <label for="amount">AMOUNT</label>
+      <input type="number"
+             id="amount"
+             name="amount"
+             min="0"
+             [ngModel]="newTransaction?.amount"
+             [placeholder]="0 | currency:accountCurrency:noCurrencySymbol"
+             #amount="ngModel"
+             required />
+    </div>
+    <div *ngIf="amount.errors?.required && (amount.touched || form.submitted)"
+         class="error">Required</div>
 
-  <div class="submit-container">
-    <input type="submit"
-           value="Submit">
-  </div>
+    <div class="submit-container">
+      <input type="submit"
+             class="primary"
+             value="Submit" />
+    </div>
+  </form>
 </app-card>
+
+<app-confirm-modal title="Preview Transfer"
+                   icon="arrows">
+  <ng-container *ngIf="error">
+    <div>ERROR: {{error}}</div>
+  </ng-container>
+
+  <ng-container *ngIf="!error">
+    <p>You are requesting a trasfer of:</p>
+    <p class="strong money">{{form.value.amount | currency:accountCurrency}}</p>
+    <p>FROM ACCOUNT:</p>
+    <p class="strong">{{accountName}}</p>
+    <p>TO ACCOUNT:</p>
+    <p class="strong">{{form.value.toAccount}}</p>
+  </ng-container>
+
+
+  <div class="actions">
+    <button class="secondary"
+            (click)="cancelTransfer()">Cancel</button>
+    <button class="primary"
+            (click)="completeTransfer(form)"
+            *ngIf="!error">Complete Transfer</button>
+  </div>
+</app-confirm-modal>

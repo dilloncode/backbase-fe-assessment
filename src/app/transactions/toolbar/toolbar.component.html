@@ -1,5 +1,5 @@
 <div class="search">
-  <input type="text"
+  <input type="search"
          name="search"
          [value]="searchText"
          (input)="onSearch(search.value)"
@@ -8,7 +8,13 @@
 </div>
 <div class="filters">
   Sort by
-  <button (click)="onSortChange('date')">Date <span *ngIf="sortProperty === 'date'" [innerHTML]="icon"></span></button>
-  <button (click)="onSortChange('beneficiary')">Beneficiary <span *ngIf="sortProperty === 'beneficiary'" [innerHTML]="icon"></span></button>
-  <button (click)="onSortChange('amount')">Amount <span *ngIf="sortProperty === 'amount'" [innerHTML]="icon"></span></button>
+  <button class="secondary"
+          (click)="onSortChange('date')">Date <span *ngIf="sortProperty === 'date'"
+          [innerHTML]="icon"></span></button>
+  <button class="secondary"
+          (click)="onSortChange('beneficiary')">Beneficiary <span *ngIf="sortProperty === 'beneficiary'"
+          [innerHTML]="icon"></span></button>
+  <button class="secondary"
+          (click)="onSortChange('amount')">Amount <span *ngIf="sortProperty === 'amount'"
+          [innerHTML]="icon"></span></button>
 </div>

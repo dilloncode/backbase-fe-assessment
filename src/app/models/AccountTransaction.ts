@@ -21,13 +21,15 @@ export class AccountTransaction {
 
   get amount() {
     const multiplier = this.transaction.creditDebitIndicator === TransactionType.Debit ? -1 : 1;
-    return this.transaction.amountCurrency.amount * multiplier;
+    return (this.transaction.amountCurrency.amount || 0) * multiplier;
   }
 
-  constructor(dto: AccountTransactionDto) {
-    this.categoryCode = dto.categoryCode;
-    this.dates = new Dates(dto.dates);
-    this.transaction = new Transaction(dto.transaction);
-    this.merchant = new Merchant(dto.merchant);
+  constructor(dto?: AccountTransactionDto) {
+    const categoryDefault = '#ccc';
+    this.categoryCode = dto?.categoryCode || categoryDefault;
+    this.dates = new Dates(dto?.dates);
+    this.transaction = new Transaction(dto?.transaction);
+    this.merchant = new Merchant(dto?.merchant);
   }
+
 }

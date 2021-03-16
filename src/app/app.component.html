@@ -8,9 +8,12 @@
 
 <div class="content"
      role="main">
-  <app-transfer [accountCurrency]="account.accountCurrency"
+  <app-transfer 
+                [accountNumber]="account.accountNumber"
+                [accountCurrency]="account.accountCurrency"
                 [accountBalance]="account.accountBalance"
-                [recentMerchants]="account.recentMerchants"></app-transfer>
+                [recentMerchants]="account.recentMerchants"
+                (addTransaction)="handleAddTransaction($event)"></app-transfer>
   <app-transactions [transactions]="account.accountTransactions"
                     (transactionChange)="handleTransactionsChange($event)"></app-transactions>
 </div>
