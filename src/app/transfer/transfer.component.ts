@@ -1,8 +1,6 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AddTransactionForm } from '../interfaces';
-import { CurrencySymbolPipe } from '../shared/pipes/currency-symbol.pipe';
 import { ConfirmModalService } from '../shared/services/confirm-modal.service';
 
 @Component({
