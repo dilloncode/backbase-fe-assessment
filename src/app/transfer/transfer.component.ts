@@ -9,7 +9,6 @@ import { ConfirmModalService } from '../shared/services/confirm-modal.service';
   selector: 'app-transfer',
   templateUrl: './transfer.component.html',
   styleUrls: ['./transfer.component.scss'],
-  providers: [CurrencyPipe, CurrencySymbolPipe]
 })
 export class TransferComponent implements OnChanges {
   @Input() accountNumber!: string;
@@ -30,12 +29,20 @@ export class TransferComponent implements OnChanges {
     }
   }
 
-  handleSubmit(values: AddTransactionForm, isValid: boolean | null) {
-    if (isValid && values.amount) {
+  resetModel() {
+    this.newTransaction = {
+      ...this.newTransaction,
+      toAccount: null,
+      amount: null,
+    };
+  }
+
+  handleSubmit(isValid: boolean | null) {
+    if (isValid && this.newTransaction.amount) {
       this.error = undefined;
-      if (this.accountBalance - values.amount < -500) {
+      if (this.accountBalance - this.newTransaction.amount < -500) {
         this.error = 'This transfer would overdraw your acccount beyond the limit';
-      } else if (values.amount <= 0) {
+      } else if (this.newTransaction.amount <= 0) {
         this.error = 'The transfer amount must be positive';
       }
 
@@ -48,8 +55,9 @@ export class TransferComponent implements OnChanges {
   }
 
   completeTransfer(form: NgForm) {
-    this.addTransaction.emit(form.value);
+    this.addTransaction.emit(this.newTransaction);
     this.modalService.close();
+    this.resetModel();
     form.resetForm(this.newTransaction);
   }
 }

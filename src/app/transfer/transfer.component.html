@@ -1,13 +1,13 @@
 <app-card title="Transfer"
           icon="arrows">
-  <form (ngSubmit)="handleSubmit(form.value, form.valid)"
+  <form (ngSubmit)="handleSubmit(form.valid)"
         #form="ngForm"
         novalidate>
-
+{{newTransaction | json}}
     <label for="fromAccount">FROM ACCOUNT</label>
     <select name="fromAccount"
             id="fromAccount"
-            [ngModel]="newTransaction?.fromAccount"
+            [(ngModel)]="newTransaction.fromAccount"
             required
             disabled>
       <option [ngValue]="accountNumber">{{accountName}} - {{accountBalance | currency:accountCurrency}}</option>
@@ -16,7 +16,7 @@
     <label for="toAccount">TO ACCOUNT</label>
     <select name="toAccount"
             id="toAccount"
-            [ngModel]="newTransaction?.toAccount"
+            [(ngModel)]="newTransaction.toAccount"
             #toAccount="ngModel"
             required>
       <option *ngFor="let merchant of recentMerchants"
@@ -32,7 +32,7 @@
              id="amount"
              name="amount"
              min="0"
-             [ngModel]="newTransaction?.amount"
+             [(ngModel)]="newTransaction.amount"
              [placeholder]="0 | currency:accountCurrency:noCurrencySymbol"
              #amount="ngModel"
              required />
