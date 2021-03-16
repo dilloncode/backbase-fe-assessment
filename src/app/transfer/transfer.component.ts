@@ -2,7 +2,6 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AddTransactionForm } from '../interfaces';
-import { AccountTransaction } from '../models';
 import { CurrencySymbolPipe } from '../shared/pipes/currency-symbol.pipe';
 import { ConfirmModalService } from '../shared/services/confirm-modal.service';
 
@@ -18,7 +17,6 @@ export class TransferComponent implements OnChanges {
   @Input() accountBalance!: number;
   @Input() recentMerchants!: string[];
   @Output() addTransaction: EventEmitter<AddTransactionForm> = new EventEmitter<AddTransactionForm>();
-  form: any;
   error?: string;
   noCurrencySymbol: string = '';
   newTransaction!: AddTransactionForm;
@@ -32,13 +30,13 @@ export class TransferComponent implements OnChanges {
     }
   }
 
-  handleSubmit(value: any, isValid: boolean | null) {
-    if (isValid) {
+  handleSubmit(values: AddTransactionForm, isValid: boolean | null) {
+    if (isValid && values.amount) {
       this.error = undefined;
-      if (this.accountBalance - value.amount < -5000) {
+      if (this.accountBalance - values.amount < -500) {
         this.error = 'This transfer would overdraw your acccount beyond the limit';
-      } else if (value.amount < 0) {
-        this.error = 'A negative amount is not allowed';
+      } else if (values.amount <= 0) {
+        this.error = 'The transfer amount must be positive';
       }
 
       this.modalService.open();
